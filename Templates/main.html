@@ -1,0 +1,171 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="../static/my_styles.css">
+</head>
+<body>
+
+<div class="row">
+<h1>2017 Bike Share Statistics</h1>
+
+<h2>Select Filter:</h2>
+
+<form action="{{url_for('selectCity')}}" method = 'POST'>
+
+<span>          
+City:
+
+<select name="city">
+    {% for cityName in cityStats.city_options %}
+    <option value= "{{cityName}}">{{cityName}}</option>"                  
+    {% endfor %}
+</select>
+</span> 
+<span> 
+&nbsp;&nbsp;&nbsp;
+Month:
+
+<select name="month">
+    {% for monthName in cityStats.month_options %}
+    <option value= "{{monthName}}">{{monthName}}</option>"
+    {% endfor %}
+</select>
+</span> 
+<span> 
+&nbsp;&nbsp;&nbsp;
+Day:
+<select name="day">
+    {% for dayName in cityStats.day_options %}
+    <option value= "{{dayName}}">{{dayName}}</option>"
+    {% endfor %}
+</select>
+</span> 
+</br>
+</br>
+<input type='submit' value='Refresh'>
+
+</form>
+</div>
+<div class="row">
+<h1>City: {{cityStats.selected_city}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          Month: {{cityStats.selected_month}} &nbsp;&nbsp;&nbsp; Day: {{cityStats.selected_day}} </h1>
+          
+          
+{% if messages %}
+<ul>
+{% for message in messages %}
+  <li ><strong style="color:red;">{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div class="column">
+<div class="row">
+<div class="column">
+<table  width: 50%>
+  <tr>
+    <th colspan="2">Time Statistics</th>
+  </tr>
+  <tr>
+    <td>Popular Month</td>
+    <td>{{cityStats.popular_month}}</td>
+  </tr>
+  <tr>
+    <td>Popular Day</td>
+    <td>{{cityStats.popular_day}}</td>
+  </tr>
+  <tr>
+    <td>Popular Hour</td>
+    <td>{{cityStats.popular_hour}}</td>
+  </tr>
+</table>
+</div>
+<div class="column">
+<table width: 50%>
+  <tr>
+    <th colspan="2">Trip Duration Statistics (in hours)</th>
+  </tr>
+  <tr>
+    <td>Average Trip Duration</td>
+    <td>{{cityStats.average_trip_duration}}</td>
+  </tr>
+  <tr>
+    <td>Minimum Trip Duration</td>
+    <td>{{cityStats.min_trip_duration}}</td>
+  </tr>
+  <tr>
+    <td>Maximum Trip Duration</td>
+    <td>{{cityStats.max_trip_duration}}</td>
+  </tr>
+  <tr>
+    <td>Total Trip Duration</td>
+    <td>{{cityStats.total_trip_duration}}</td>
+  </tr>
+</table>
+</div>
+</div>
+<div class="row">
+<table width: 25%>
+  <tr>
+    <th colspan="2">Station Statistics</th>
+  </tr>
+  <tr>
+    <td>Most Common Start Station</td>
+    <td>{{cityStats.pop_start_station}}</td>
+  </tr>
+  <tr>
+    <td>Most Common End Station</td>
+    <td>{{cityStats.pop_end_station}}</td>
+  </tr>
+  <tr>
+    <td>Most Common Trip</td>
+    <td>{{cityStats.pop_start_end}}</td>
+  </tr>
+</table>
+</div>
+</div>
+<div class="column">
+<table width: 25%>
+  <tr>
+    <th colspan="2">User Statistics</th>
+  </tr>
+  <tr>
+    <td>Customers Count</td>
+    <td>{{cityStats.customer_count}}</td>
+  </tr>
+  <tr>
+    <td>Subscribers Count</td>
+    <td>{{cityStats.subscriber_count}}</td>
+  </tr>
+  <tr>
+    <td>Dependents Count</td>
+    <td>{{cityStats.dependent_count}}</td>
+  </tr>  
+  <tr>
+    <td>Female Count</td>
+    <td>{{cityStats.female_count}}</td>
+  </tr>
+  <tr>
+    <td>Male Count</td>
+    <td>{{cityStats.male_count}}</td>
+  </tr>
+  <tr>
+    <td>Youngest User</td>
+    <td>{{cityStats.youngest}}</td>
+  </tr>
+  <tr>
+    <td>Oldest User</td>
+    <td>{{cityStats.oldest}}</td>
+  </tr>
+  <tr>
+    <td>Most Common Age</td>
+    <td>{{cityStats.pop_age}}</td>
+  </tr>   
+  <tr>
+    <td>Most Common Age Range</td>
+    <td>{{cityStats.pop_age_range}}</td>
+  </tr>     
+</table>
+</div>
+</div>
+</body>
+
+</html>
